@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+{% block title %}Sign Up {% endblock %}
+{% block content %}
+<div class="p-10 lg:p-20 text-center">
+    <h1 class="text-3xl lg:text-6xl text-white">Sign Up</h1>
+</div>
+<form action="." class="lg:w-1/4 px-4 mx-auto" method="POST">
+    {% csrf_token %}
+    <div class="mb-5">
+        <label class="text-white">Username</label>
+        <input type="text" class="w-full mt-2 px-4 py-4 rounded-xl" name="username">
+    </div>
+    <div class="mb-5">
+        <label class="text-white">Password</label>
+        <input type="password" class="w-full mt-2 px-4 py-4 rounded-xl" name="password1">
+    </div>
+    <div class="mb-5">
+        <label class="text-white">Repeat Password</label>
+        <input type="password" class="w-full mt-2 px-4 py-4 rounded-xl" name="password2">
+    </div>
+    
+
+    
+<button class="px-5 py-3 rounded-xl text-white bg-teal-700 hover:bg-teal-800" type="submit">Submit</button>
+{% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error|escape }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+</form>
+{% endblock %}
